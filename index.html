@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Anando Siddique - Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000;
+  --card:rgba(255,255,255,0.08);
+  --text:#fff;
+  --accent:#00f2ff;
+}
+.light{
+  --bg: linear-gradient(135deg, #f5f7fa, #e0e4eb);
+  --card: rgba(255,255,255,0.25);
+  --text: #1a1a1a;
+  --accent: #0066ff;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);overflow-x:hidden;transition:0.5s}
+
+/* CANVAS */
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+}
+
+/* NAV */
+nav{
+  position:fixed;
+  top:0;width:100%;
+  padding:15px 8%;
+  display:flex;
+  justify-content:space-between;
+  backdrop-filter:blur(10px);
+  background:rgba(0,0,0,.2);
+  z-index:10;
+  transition:0.5s;
+}
+.light nav{
+  background: rgba(255,255,255,0.3);
+}
+nav a{color:var(--text);margin:0 12px;text-decoration:none;transition:0.5s}
+
+/* HERO */
+header{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:80px 20px;
+  z-index:2;
+  position:relative;
+}
+.hero{
+  max-width:900px;
+  padding:60px 30px;
+  text-align:center;
+  border-radius:25px;
+  background:var(--card);
+  backdrop-filter:blur(18px);
+  box-shadow:0 0 60px rgba(0,242,255,.35);
+  transition:0.5s;
+}
+.light .hero{
+  background: rgba(255,255,255,0.25);
+  box-shadow: 0 0 40px rgba(0,102,255,0.3);
+}
+.hero h1{
+  font-size:3rem;
+  background:linear-gradient(90deg,#00f2ff,#7cff00);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.typing{margin-top:15px;font-size:1.4rem;color:var(--accent);min-height:40px;transition:0.5s}
+
+/* SECTIONS */
+section{padding:90px 10%}
+h2{text-align:center;font-size:2.5rem;color:var(--accent);margin-bottom:50px;transition:0.5s}
+
+/* CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+}
+.card{
+  background:var(--card);
+  padding:30px;
+  border-radius:22px;
+  transition:.4s;
+}
+.card:hover{
+  transform:translateY(-12px);
+  box-shadow:0 0 40px rgba(0,242,255,.6);
+}
+.light .card:hover{
+  box-shadow:0 0 30px rgba(0,102,255,.5);
+}
+
+/* FOOTER */
+footer{text-align:center;padding:30px;background:var(--card);transition:0.5s}
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<nav>
+  <strong>ANANDO SIDDIQUE</strong>
+  <div>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <span id="mode" style="cursor:pointer">🌙</span>
+  </div>
+</nav>
+
+<header>
+  <div class="hero">
+    <h1>Anando Siddique</h1>
+    <div class="typing" id="typing"></div>
+    <p>MBBS Student | Math & Physics Enthusiast | Problem Solver</p>
+  </div>
+</header>
+
+<section id="about">
+<h2>About Me</h2>
+<div class="cards">
+  <div class="card">
+    <h3>Personal Info</h3>
+    <p>Name: Anando Siddique</p>
+    <p>Currently: MBBS 1st Year, Magura Medical College, Magura</p>
+    <p>Hometown: Patgram, Lalmonirhat, Bangladesh</p>
+  </div>
+  <div class="card">
+    <h3>Interests</h3>
+    <p>Mathematics, Physics, Problem Solving</p>
+    <p>Science & Logical Thinking</p>
+  </div>
+</div>
+</section>
+
+<section id="skills">
+<h2>Expertise</h2>
+<div class="cards">
+  <div class="card"><h3>Problem Solving</h3><p>Participated in multiple problem solving competitions and challenges.</p></div>
+  <div class="card"><h3>Mathematics</h3><p>Algebra, Calculus, Logical Reasoning, Trignometry</p></div>
+  <div class="card"><h3>Physics</h3><p>Mechanics, Optics, Modern Physics</p></div>
+</div>
+</section>
+
+<section id="education">
+<h2>Education</h2>
+<div class="cards">
+  <div class="card"><h3>Current</h3><p>1st Year MBBS, Magura Medical College, Magura</p></div>
+  <div class="card"><h3>Previous</h3><p>Rangpur Govt College</p><p>Islami Adarsha Biddya Niketon</p></div>
+</div>
+</section>
+
+<footer>© 2025 Anando Siddique | Math & Science Enthusiast 🚀</footer>
+
+<script>
+/* TYPING EFFECT */
+const texts=["Math Enthusiast","Physics Explorer","Problem Solver","MBBS Student"];
+let ti=0,tj=0,el=document.getElementById("typing");
+(function type(){
+ if(tj<texts[ti].length){
+  el.innerHTML+=texts[ti][tj++];setTimeout(type,80)
+ }else setTimeout(erase,1200)
+})();
+function erase(){
+ if(tj>0){el.innerHTML=texts[ti].substring(0,--tj);setTimeout(erase,40)}
+ else{ti=(ti+1)%texts.length;setTimeout(type,300)}
+}
+
+/* THEME TOGGLE */
+document.getElementById("mode").onclick=()=>{
+  document.body.classList.toggle("light");
+  document.getElementById("mode").textContent = document.body.classList.contains("light") ? "☀️" : "🌙";
+};
+
+/* BACKGROUND PARTICLES + MATH SYMBOLS */
+const canvas=document.getElementById("bg"),ctx=canvas.getContext("2d");
+function resize(){canvas.width=innerWidth;canvas.height=innerHeight}
+resize();addEventListener("resize",resize);
+
+const colors=["#00f2ff","#7cff00","#ff6ec7","#7aa2ff"];
+const mathSymbols=["π","∞","Σ","√","λ","E=mc²","∫","Δ","θ","+","×"];
+const particles=[];
+
+class Particle{
+ constructor(layer){
+  this.layer=layer;
+  this.x=Math.random()*canvas.width;
+  this.y=Math.random()*canvas.height;
+  this.r=Math.random()*3+2;
+  this.sp=(Math.random()*0.8+0.4)*layer;
+  this.c=colors[Math.floor(Math.random()*colors.length)];
+  this.off=Math.random()*1000;
+  this.sym=mathSymbols[Math.floor(Math.random()*mathSymbols.length)];
+  this.font=16+Math.random()*20;
+ }
+ move(t){
+  this.y-=this.sp;
+  this.x+=Math.sin(t*0.002+this.off)*0.5;
+  if(this.y<0)this.y=canvas.height;
+ }
+ draw(){
+  ctx.beginPath();
+  ctx.fillStyle=this.c;
+  ctx.shadowColor=this.c;
+  ctx.shadowBlur=2;
+  ctx.globalAlpha=0.2;
+  ctx.font=this.font+"px Poppins";
+  ctx.fillText(this.sym,this.x,this.y);
+ }
+}
+
+for(let l=1;l<=3;l++)
+ for(let i=0;i<60;i++)particles.push(new Particle(l));
+
+function connect(){
+ for(let i=0;i<particles.length;i++){
+  for(let j=i+1;j<i+6;j++){
+   let dx=particles[i].x-particles[j]?.x;
+   let dy=particles[i].y-particles[j]?.y;
+   let d=Math.sqrt(dx*dx+dy*dy);
+   if(d<120){
+    ctx.strokeStyle="rgba(0,242,255,.1)";
+    ctx.lineWidth=1;
+    ctx.beginPath();
+    ctx.moveTo(particles[i].x,particles[i].y);
+    ctx.lineTo(particles[j].x,particles[j].y);
+    ctx.stroke();
+   }
+  }
+ }
+}
+
+let time=0;
+(function animate(){
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ time++;
+ particles.forEach(p=>{p.move(time);p.draw()});
+ connect();
+ requestAnimationFrame(animate);
+})();
+</script>
+
+</body>
+</html>
