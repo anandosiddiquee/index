@@ -22,14 +22,13 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);overflow-x:hidden;transition:0.5s}
 
-/* CANVAS */
 canvas{
   position:fixed;
   inset:0;
   z-index:-1;
 }
 
-/* NAV */
+
 nav{
   position:fixed;
   top:0;width:100%;
@@ -46,7 +45,6 @@ nav{
 }
 nav a{color:var(--text);margin:0 12px;text-decoration:none;transition:0.5s}
 
-/* HERO */
 header{
   min-height:100vh;
   display:flex;
@@ -78,11 +76,10 @@ header{
 }
 .typing{margin-top:15px;font-size:1.4rem;color:var(--accent);min-height:40px;transition:0.5s}
 
-/* SECTIONS */
+
 section{padding:90px 10%}
 h2{text-align:center;font-size:2.5rem;color:var(--accent);margin-bottom:50px;transition:0.5s}
 
-/* CARDS */
 .cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -102,7 +99,6 @@ h2{text-align:center;font-size:2.5rem;color:var(--accent);margin-bottom:50px;tra
   box-shadow:0 0 30px rgba(0,102,255,.5);
 }
 
-/* FOOTER */
 footer{text-align:center;padding:30px;background:var(--card);transition:0.5s}
 </style>
 </head>
@@ -162,10 +158,9 @@ footer{text-align:center;padding:30px;background:var(--card);transition:0.5s}
 </div>
 </section>
 
-<footer>© 2025 Anando Siddique | Math & Science Enthusiast 🚀</footer>
+<footer>© 2025 Anando Siddique | Math & Science Enthusiast </footer>
 
 <script>
-/* TYPING EFFECT */
 const texts=["Math Enthusiast","Physics Explorer","Problem Solver","MBBS Student"];
 let ti=0,tj=0,el=document.getElementById("typing");
 (function type(){
@@ -178,13 +173,11 @@ function erase(){
  else{ti=(ti+1)%texts.length;setTimeout(type,300)}
 }
 
-/* THEME TOGGLE */
 document.getElementById("mode").onclick=()=>{
   document.body.classList.toggle("light");
   document.getElementById("mode").textContent = document.body.classList.contains("light") ? "☀️" : "🌙";
 };
 
-/* BACKGROUND PARTICLES + MATH SYMBOLS */
 const canvas=document.getElementById("bg"),ctx=canvas.getContext("2d");
 function resize(){canvas.width=innerWidth;canvas.height=innerHeight}
 resize();addEventListener("resize",resize);
@@ -254,3 +247,4 @@ let time=0;
 
 </body>
 </html>
+
